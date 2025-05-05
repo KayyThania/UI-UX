@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beauty & Self-Growth</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      flex-shrink: 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #5e315b;
+    }
+    nav a {
+      margin: 0 1rem;
+      font-size: 0.95rem;
+      color: #444;
+      transition: color 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: #b76e79;
+    }
+    .search-box input {
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      outline-offset: 2px;
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, #e8b4cb, #f3e2e9);
+      padding: 4rem 2rem 5rem;
+      text-align: center;
+      color: #5e315b;
+      flex-shrink: 0;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #7a4f6a;
+      margin-bottom: 1.5rem;
+    }
+    .hero button {
+      background-color: #fff;
+      color: #b76e79;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(183, 110, 121, 0.3);
+      transition: background-color 0.3s ease;
+    }
+    .hero button:hover,
+    .hero button:focus {
+      background-color: #f8dfe8;
+    }
+    /* Main content wrapper */
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    /* Section headings */
+    section h2 {
+      font-size: 2.2rem;
+      color: #5e315b;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      text-align: center;
+    }
+    /* Featured Articles Section */
+    .featured-articles {
+      margin-bottom: 3rem;
+    }
+    .featured-main-image-container {
+      position: relative;
+      max-width: 650px;
+      margin: 0 auto 1.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(183, 110, 121, 0.3);
+    }
+    .featured-main-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .featured-main-text-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      font-weight: 700;
+      font-family: 'Georgia', serif;
+      font-size: 1.2rem;
+      text-align: center;
+      user-select: none;
+    }
+    /* Featured article cards container */
+    .featured-cards {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .featured-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(183, 110, 121, 0.2);
+      padding: 1rem;
+      width: 180px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    .featured-card:hover,
+    .featured-card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(183, 110, 121, 0.4);
+    }
+    .featured-card .emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.25rem;
+      user-select: none;
+      text-align: center;
+    }
+    .featured-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #5e315b;
+      margin-bottom: 0.25rem;
+    }
+    .featured-card p {
+      font-size: 0.85rem;
+      color: #6a4a5a;
+      user-select: none;
+    }
+    /* Product Recommendations */
+    .product-recommendations {
+      margin-top: 3rem;
+    }
+    .emoji-list {
+      list-style: none;
+      margin: 1rem 0 2rem 0;
+      padding-left: 0;
+      font-size: 1rem;
+      color: #5e315b;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .emoji-list li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+    .emoji-list li span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-top: 0.25rem;
+      color: #6a4a5a;
+    }
+    /* Cards container */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    /* Individual card */
+    .card {
+      background-color: #fff0f5;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(183, 110, 121, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(183, 110, 121, 0.4);
+    }
+    .card h3 {
+      margin: 1rem 0 0.5rem;
+      color: #5e315b;
+      font-size: 1.2rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #6a4a5a;
+    }
+    /* Makeup Tests Section */
+    .makeup-tests {
+      background-color: #fff8e7;
+      border-radius: 20px;
+      padding: 2rem 1rem 3rem;
+      margin-top: 3rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .makeup-tests .tests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .test-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(183, 110, 121, 0.2);
+      padding: 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .test-card:hover,
+    .test-card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(183, 110, 121, 0.4);
+    }
+    .test-card .emoji {
+      font-size: 3rem;
+      user-select: none;
+    }
+    .test-card h3 {
+      font-size: 1.2rem;
+      color: #5e315b;
+      margin-bottom: 0.5rem;
+    }
+    .test-card p {
+      font-size: 0.95rem;
+      color: #6a4a5a;
+      margin-bottom: 1rem;
+    }
+    .test-card button {
+      background-color: #b76e79;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(183, 110, 121, 0.5);
+      transition: background-color 0.3s ease;
+    }
+    .test-card button:hover,
+    .test-card button:focus {
+      background-color: #9a5560;
+    }
+    /* Self Growth Resources */
+    .self-growth-resources {
+      margin-top: 3rem;
+    }
+    .resources {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .resource-card {
+      flex: 1 1 300px;
+      background-color: #fff0f5;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(183, 110, 121, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .resource-card h3 {
+      margin-bottom: 0.75rem;
+      color: #5e315b;
+    }
+    .resource-card p {
+      color: #6a4a5a;
+      font-size: 1rem;
+    }
+    /* CTA Section */
+    .cta-section {
+      background-color: #f8dfe8;
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      margin: 3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cta-icon {
+      font-size: 3rem;
+      color: #b76e79;
+      flex: 0 0 60px;
+      text-align: center;
+    }
+    .cta-text {
+      flex: 1 1 300px;
+      color: #5e315b;
+    }
+    .cta-text h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .cta-text p {
+      font-size: 1rem;
+      color: #7a4f6a;
+    }
+    .cta-button {
+      background-color: #b76e79;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 28px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 8px rgba(183, 110, 121, 0.5);
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover,
+    .cta-button:focus {
+      background-color: #9a5560;
+    }
+    /* Community Posts */
+    .community-posts {
+      background-color: #fff8f9;
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    .community-posts .cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .post-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(183, 110, 121, 0.2);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      color: #5e315b;
+      font-size: 0.9rem;
+    }
+    .post-image {
+      border-radius: 12px;
+      overflow: hidden;
+      max-height: 180px;
+    }
+    .post-caption {
+      font-size: 1rem;
+      color: #6a4a5a;
+    }
+    .post-tags {
+      color: #b76e79;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .post-actions {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.2rem;
+      color: #b76e79;
+      cursor: pointer;
+      user-select: none;
+    }
+    /* Testimonials */
+    .testimonials {
+      margin-top: 3rem;
+    }
+    .testimonials h2 {
+      margin-bottom: 1rem;
+    }
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+    }
+    .testimonials .card {
+      background-color: #fff0f5;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(183, 110, 121, 0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      max-width: 320px;
+    }
+    .testimonials .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 6px rgba(183, 110, 121, 0.5);
+    }
+    .testimonials .card h4 {
+      color: #b76e79;
+      font-weight: 700;
+      margin-top: 0.25rem;
+    }
+    .testimonials .card p {
+      font-style: italic;
+      color: #5e315b;
+      margin: 0.5rem 0;
+    }
+    .star-rating {
+      color: #f5b301;
+      font-size: 1.2rem;
+    }
+    /* Newsletter Footer */
+    .newsletter-footer {
+      background-color: #5e315b;
+      color: #fff;
+      padding: 2rem 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+      border-radius: 12px 12px 0 0;
+    }
+    .newsletter-footer h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .newsletter-footer form {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .newsletter-footer input[type="email"] {
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      border: none;
+      font-size: 1rem;
+      flex: 1 1 250px;
+      max-width: 400px;
+      outline-offset: 2px;
+    }
+    .newsletter-footer button {
+      background-color: #b76e79;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 0.6rem 1.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(183, 110, 121, 0.5);
+      transition: background-color 0.3s ease;
+      flex: 0 0 auto;
+    }
+    .newsletter-footer button:hover,
+    .newsletter-footer button:focus {
+      background-color: #9a5560;
+    }
+    .newsletter-footer p {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #d9c7d0;
+    }
+    /* Footer Menu */
+    footer.menu-footer {
+      background-color: #3e2f3f;
+      color: #d9c7d0;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    footer.menu-footer a {
+      color: #d9c7d0;
+      transition: color 0.3s ease;
+    }
+    footer.menu-footer a:hover,
+    footer.menu-footer a:focus {
+      color: #b76e79;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 0.5rem;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      nav a {
+        margin: 0;
+        padding: 0.3rem 0.5rem;
+        background-color: #f3e2e9;
+        border-radius: 12px;
+        font-size: 0.9rem;
+      }
+      .search-box {
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      main {
+        padding: 1rem;
+      }
+      /* Featured Articles responsive */
+      .featured-cards {
+        flex-direction: column;
+        width: 100%;
+        max-width: none;
+      }
+      .featured-card {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .emoji-list {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .resources {
+        flex-direction: column;
+      }
+      .cta-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .cta-icon {
+        margin-bottom: 1rem;
+      }
+      .community-posts .cards {
+        grid-template-columns: 1fr;
+      }
+      footer.menu-footer {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .makeup-tests .tests-grid {
+        grid-template-columns: 1fr;
+      }
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Beauty &amp; Self-Growth</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Beauty</a>
+      <a href="#">Self Growth</a>
+      <a href="#">Community</a>
+      <a href="#">About Us</a>
+    </nav>
+    <div class="search-box">
+      <input type="text" placeholder="Search in site" aria-label="Search in site" />
+    </div>
+  </header>
+
+  <section class="hero" role="banner">
+    <h1>Welcome to <br /> Glow Up Inside Out</h1>
+    <p>Empowering Your Beauty, Inside and Out.</p>
+    <button type="button">Get Started</button>
+  </section>
+
+  <main>
+    <section class="featured-articles" aria-labelledby="featured-articles-title">
+      <h2 id="featured-articles-title">Featured Articles</h2>
+      <div class="featured-main-image-container">
+        <img src="https://images.pexels.com/photos/8530931/pexels-photo-8530931.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Four diverse women smiling" />
+        <div class="featured-main-text-overlay">
+          Every shade is beautiful, embrace your uniqueness.
+        </div>
+      </div>
+      <div class="featured-cards" role="list">
+        <article class="featured-card" role="listitem" tabindex="0">
+          <div class="emoji" aria-hidden="true">✨</div>
+          <h3>5 Beauty Secrets Every Woman Should Know</h3>
+          <p>Discover the top beauty secrets every woman should know.</p>
+        </article>
+        <article class="featured-card" role="listitem" tabindex="0">
+          <div class="emoji" aria-hidden="true">💡</div>
+          <h3>Unlocking Your Potential: The Power of Self-Growth</h3>
+          <p>Tips to enhance your inner and outer beauty.</p>
+        </article>
+        <article class="featured-card" role="listitem" tabindex="0">
+          <div class="emoji" aria-hidden="true">💄</div>
+          <h3>Mastering the Art of Makeup: Tips and Product</h3>
+          <p>Learn makeup techniques and product recommendations.</p>
+        </article>
+        <article class="featured-card" role="listitem" tabindex="0">
+          <div class="emoji" aria-hidden="true">🌿</div>
+          <h3>Natural Beauty: Embracing Your Authentic Self</h3>
+          <p>Celebrate your natural beauty and authenticity.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="product-recommendations" aria-labelledby="product-recommendations-title">
+      <h2 id="product-recommendations-title">Product Recommendations</h2>
+      <ul class="emoji-list" aria-label="Skin Care and Make Up highlights">
+        <li>🌞<span>Skin Care</span></li>
+        <li>💄<span>Make Up</span></li>
+      </ul>
+      <div class="cards">
+        <article class="card">
+          <img src="https://i.pinimg.com/736x/ad/fb/0c/adfb0c2c0b97ce1c0046749d03d92bc0.jpg" alt="Minimalist Skin Care Serums" />
+          <h3>SKIN1004 Madagascar Centella Ampoule Foam & SKIN1004 Madagascar Centella Light</h3>
+          <p>For all skin yype</p>
+        </article>
+        <article class="card">
+          <img src="https://barenbliss.com/cdn/shop/files/LilyMakesLuminousGlowTint4_1024x1024.jpg?v=1720774415" alt="Barenbliss Glow Tint" />
+          <h3>Barenbliss Glow Tint</h3>
+          <p>Shade: Best Shade: Figgy Plum</p>
+        </article>
+        <article class="card">
+          <img src="https://i.pinimg.com/736x/ca/d2/33/cad233851f143968da0c1bae1207cc5c.jpg" alt="GloWish Multidew Skin Tint by Huda Beauty" />
+          <h3>GloWish Multidew Skin Tint by Huda Beauty</h3>
+          <p>For Dry to Normal Skin</p>
+        </article>
+      </div>
+    
+
+    <section class="makeup-tests" aria-labelledby="makeup-tests-title">
+      <h2 id="makeup-tests-title">Makeup Tests</h2>
+      <div class="tests-grid">
+        <article class="test-card" tabindex="0">
+          <div class="emoji" aria-hidden="true">💄</div>
+          <h3>Lipstick Shades</h3>
+          <p>Discover your perfect lipstick shade with our fun test.</p>
+          <button type="button">Take the test</button>
+        </article>
+        <article class="test-card" tabindex="0">
+          <div class="emoji" aria-hidden="true">💅</div>
+          <h3>Nail Art Styles</h3>
+          <p>Explore trendy nail art styles to express yourself.</p>
+          <button type="button">Explore now</button>
+        </article>
+        <article class="test-card" tabindex="0">
+          <div class="emoji" aria-hidden="true">💋</div>
+          <h3>Lip Gloss Guide</h3>
+          <p>Learn how to choose and apply lip gloss like a pro.</p>
+          <button type="button">Learn more</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="self-growth-resources" aria-labelledby="self-growth-resources-title">
+      <h2 id="self-growth-resources-title">Self Growth Resources</h2>
+      <div class="resources">
+        <div class="resource-card" role="region" aria-label="Join Our Community">
+          <h3>Join Our Community</h3>
+          <p>Connect with like-minded individuals on your growth journey.</p>
+        </div>
+        <div class="resource-card" role="region" aria-label="Upcoming Webinars">
+          <h3>Upcoming Webinars</h3>
+          <p>Explore upcoming webinars on personal development topics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" role="region" aria-label="Call to Action">
+      <div class="cta-icon" aria-hidden="true">👤</div>
+      <div class="cta-text">
+        <h2>Your Self-Growth Journey</h2>
+        <p>Start your journey to a better you with our supportive community and resources.</p>
+      </div>
+      <button class="cta-button" type="button">Start Now</button>
+    </section>
+
+    <section class="community-posts" aria-labelledby="community-posts-title">
+      <h2 id="community-posts-title">Community Posts</h2>
+      <div class="cards">
+        <article class="post-card" role="article" aria-label="Post by user1">
+          <div class="post-header">
+            <span class="username">user1</span>
+            <time datetime="2024-04-20T14:30">2 hours ago</time>
+          </div>
+          <div class="post-image">
+            <img src="https://i.pinimg.com/736x/86/3c/80/863c803ba884621c09da9fe731584641.jpg" height="300" width="400" frameborder="0" scrolling="no" ></iframe>" alt="Community post image 1" />
+          </div>
+          <p class="post-caption">Enjoying the journey of self-growth! #SelfGrowth</p>
+          <p class="post-tags">#SelfGrowth</p>
+          <div class="post-actions" aria-label="Post actions">
+            <span title="Like" role="button" tabindex="0" aria-pressed="false">❤</span>
+            <span title="Comment" role="button" tabindex="0" aria-pressed="false">💬</span>
+          </div>
+        </article>
+        <article class="post-card" role="article" aria-label="Post by user2">
+          <div class="post-header">
+            <span class="username">user2</span>
+            <time datetime="2024-04-19T10:00">1 day ago</time>
+          </div>
+          <div class="post-image">
+            <img src="https://source.unsplash.com/400x250/?makeup,beauty" alt="Community post image 2" />
+          </div>
+          <p class="post-caption">Trying new makeup styles! #MakeupTips</p>
+          <p class="post-tags">#MakeupTips</p>
+          <div class="post-actions" aria-label="Post actions">
+            <span title="Like" role="button" tabindex="0" aria-pressed="false">❤</span>
+            <span title="Comment" role="button" tabindex="0" aria-pressed="false">💬</span>
+          </div>
+        </article>
+        <article class="post-card" role="article" aria-label="Post by user3">
+          <div class="post-header">
+            <span class="username">user3</span>
+            <time datetime="2024-04-18T08:15">2 days ago</time>
+          </div>
+          <div class="post-image">
+            <img src="https://source.unsplash.com/400x250/?nailart,beauty" alt="Community post image 3" />
+          </div>
+          <p class="post-caption">Nail art inspiration! #NailArt</p>
+          <p class="post-tags">#NailArt</p>
+          <div class="post-actions" aria-label="Post actions">
+            <span title="Like" role="button" tabindex="0" aria-pressed="false">❤</span>
+            <span title="Comment" role="button" tabindex="0" aria-pressed="false">💬</span>
+          </div>
+        </article>
+        <article class="post-card" role="article" aria-label="Post by user4">
+          <div class="post-header">
+            <span class="username">user4</span>
+            <time datetime="2024-04-17T16:45">3 days ago</time>
+          </div>
+          <div class="post-image">
+            <img src="https://source.unsplash.com/400x250/?lipstick,beauty" alt="Community post image 4" />
+          </div>
+          <p class="post-caption">Lip gloss is my favorite! #LipGloss</p>
+          <p class="post-tags">#LipGloss</p>
+          <div class="post-actions" aria-label="Post actions">
+            <span title="Like" role="button" tabindex="0" aria-pressed="false">❤</span>
+            <span title="Comment" role="button" tabindex="0" aria-pressed="false">💬</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="testimonials" aria-labelledby="testimonials-title">
+      <h2 id="testimonials-title">Apa sih kata mereka tentang Guio?</h2>
+      <div class="reviews cards">
+        <article class="card" role="article" aria-label="Review by Sarah">
+          <p>"Glow Up Inside Out is amazing! I've never felt more confident."</p>
+          <div class="star-rating" aria-label="5 star rating">⭐⭐⭐⭐⭐</div>
+          <h4>Sarah</h4>
+        </article>
+        <article class="card" role="article" aria-label="Review by Linda">
+          <p>"This website has transformed my beauty routine completely."</p>
+          <div class="star-rating" aria-label="5 star rating">⭐⭐⭐⭐⭐</div>
+          <h4>Linda</h4>
+        </article>
+        <article class="card" role="article" aria-label="Review by Emily">
+          <p>"A wonderful place to enhance both inner and outer beauty."</p>
+          <div class="star-rating" aria-label="5 star rating">⭐⭐⭐⭐⭐</div>
+          <h4>Emily</h4>
+        </article>
+        <article class="card" role="article" aria-label="Review by Mia">
+          <p>"I love the community and resources here. Highly recommend!"</p>
+          <div class="star-rating" aria-label="5 star rating">⭐⭐⭐⭐⭐</div>
+          <h4>Mia</h4>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="newsletter-footer" aria-label="Newsletter subscription">
+    <h3>Get Weekly Beauty &amp; Wellness Tips</h3>
+    <form action="#" method="post" onsubmit="return false;">
+      <input type="email" placeholder="Enter your email" aria-label="Email address" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <p>Join 10,000+ beauty enthusiasts and wellness lovers who get our weekly tips.</p>
+  </section>
+
+  <footer class="menu-footer" role="contentinfo" aria-label="Footer menu">
+    <a href="#">About Us</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">FAQ</a>
+    <a href="#">Social Media</a>
+  </footer>
+</body>
+</html>
+             
